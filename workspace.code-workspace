@@ -3,5 +3,19 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"python.pythonPath": "C:\\Users\\lpres\\anaconda3\\python.exe"
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python: Module",
+				"type": "python",
+				"request": "launch",
+				"module": "C:\\Users\\lpres\\anaconda3\\python.exe"
+			}
+		]
+	}
 }
