@@ -1,0 +1,34 @@
+-- sqlite3 sql file
+-- Windows command: sqlite3 maindb.sqlite3 ".read 1.sql"
+-- Import, Transform from csv to table
+drop table if exists wf7333;
+drop table if exists wf7333raw;
+.mode csv
+.import 'data/WF7333raw.csv' wf7333raw
+.tables
+.schema wf7333raw
+pragma table_info(wf7333raw);
+
+create table if not exists wf7333 (
+	Source text, 
+	TranDate date, 
+	AcctCode text,
+        X char,
+	Debit numeric, 
+	Credit numeric, 
+	Details text
+        ); 
+.schema wf7333
+pragma table_info(wf7333);
+
+insert into wf7333(TranDate, Debit, Credit, Details) select TranDate,0,Amount,Details from wf7333raw;
+select 'WF7333 table count:', count(*) from wf7333;
+update wf7333 set source = 'mf7333';
+update wf7333 set acctcode = 'unknown';
+update wf7333 set x = 'U';
+update wf7333 set debit = credit where credit > 0;
+update wf7333 set credit = 0 where credit > 0;
+update wf7333 set credit = abs(credit) where credit < 0;
+
+select * from wf7333 limit 100;
+.quit

@@ -1,4 +1,4 @@
-#! C:\Users\lpres\anaconda3\python.exe
+
 
 import os
 import datetime

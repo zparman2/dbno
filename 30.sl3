@@ -1,0 +1,6 @@
+-- Export table to csv file
+.headers on
+.mode csv
+.output data/wf7333_y2020.csv
+select * from wf7333;
+.quit
